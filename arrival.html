@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>My Very First Progressive Web App Using React</title>
+  <title>Welcome to the future of technology and design</title>
 </head>
 
 <body>
-  <p>Come join me in creating the future!</p>
   <div id="app"></div>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.1.0/umd/react.development.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.1.0/umd/react-dom.development.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
      <script type="text/babel">
-           class Greeting extends React.Component {
+
+           class Counter extends React.Component {
+             constructor(props){
+           super(props);
+           this.state = {
+             number: 1
+           }
+         }
+
              render() {
                return (
                  <div>
-                   <h1>The Future Has Finally Arrived!</h1>
+                   <img src={this.props.image} alt="Microsoft Logo"/>
+                   <h1>Were helping to foster a whole new era of games!</h1>
+                   <h2>Microsoft Corporation presents: {this.props.label}</h2>
+                   <h2>This is just the beginning!</h2>
+                    <h3>Phase: {this.state.number}</h3>
+                   <p>Premiere date: {this.props.date.toLocaleDateString()}</p>
                  </div>
                );
              }
            }
+
+           const info = {
+        date: new Date(),
+        image: 'https://cdn.pixabay.com/photo/2013/02/12/09/07/microsoft-80658__340.png',
+      }
+
+      Counter.defaultProps = {
+        label: "Windows Games"
+      }
+
            ReactDOM.render(
-             <Greeting />, document.getElementById('app')
+             <Counter
+               date={info.date}
+               image={info.image}/>,document.getElementById('app')
            );
      </script>
 </body>
